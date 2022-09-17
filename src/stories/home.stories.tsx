@@ -1,4 +1,4 @@
-import Home from '.'
+import Home from '@/pages'
 
 export default {
   title: 'Pages/Home',
