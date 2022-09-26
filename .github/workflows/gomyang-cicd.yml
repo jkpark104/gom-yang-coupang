@@ -9,10 +9,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ secrets.NODE_VERSION }}
           cache: 'yarn'
@@ -48,8 +48,8 @@ jobs:
 
       - name: Send slack if completed
       
-        if: ${{ success() }}
-        uses: ./.github/actions/slack-notify
-       with:
+      if: ${{ success() }}
+      uses: ./.github/actions/slack-notify
+      with:
         status: success
         slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
