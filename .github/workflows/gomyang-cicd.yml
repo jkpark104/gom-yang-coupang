@@ -25,19 +25,21 @@ jobs:
         uses: borales/actions-yarn@v3.0.0
         with:
           cmd: lint
-        if: ${{ always() }}
 
       - name: Run Tests
         uses: borales/actions-yarn@v3.0.0
         with:
           cmd: ci:test
-        if: ${{ always() }}
 
       - name: Bundle and Output
         uses: borales/actions-yarn@v3.0.0
         with:
           cmd: build
-        if: ${{ always() }}
+
+      - name: Lighthouse Benchmarks
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: ci:lighthouse
 
       - name: Send slack when failed
         if: ${{ failure() }}
