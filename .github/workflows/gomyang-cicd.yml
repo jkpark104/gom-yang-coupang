@@ -36,10 +36,15 @@ jobs:
         with:
           cmd: build
 
-      - name: Lighthouse Benchmarks
-        uses: borales/actions-yarn@v3.0.0
+      - name: deploy on vercel
+        uses: amondnet/vercel-action@v20 #deploy
         with:
-          cmd: ci:lighthouse
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.ORG_ID}} #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
+          working-directory: ./sub-directory
 
       - name: Send slack when failed
         if: ${{ failure() }}
