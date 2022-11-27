@@ -43,14 +43,14 @@ jobs:
         with:
           cmd: build
 
-      - name: Deploy
-        uses: amondnet/vercel-action@v20 #deploy
+      - name: deploy on vercel
+        uses: amondnet/vercel-action@v25 #deploy
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           vercel-org-id: ${{ secrets.ORG_ID}} #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
           scope: ${{ secrets.ORG_ID }}
-          
+
       - name: Send slack when failed
         if: ${{ failure() }}
         uses: ./.github/actions/slack-notify
